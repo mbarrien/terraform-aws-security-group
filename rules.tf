@@ -129,6 +129,8 @@ variable "rules" {
     redis-tcp = [6379, 6379, "tcp", "Redis"]
     # Redshift
     redshift-tcp = [5439, 5439, "tcp", "Redshift"]
+    # SMTP
+    smtp-tcp = [25, 25, "tcp", "SMTP"]
     # Splunk
     splunk-indexer-tcp = [9997, 9997, "tcp", "Splunk indexer"]
     splunk-web-tcp     = [8000, 8000, "tcp", "Splunk Web"]
@@ -357,6 +359,11 @@ variable "auto_groups" {
     }
     redshift = {
       ingress_rules     = ["redshift-tcp"]
+      ingress_with_self = ["all-all"]
+      egress_rules      = ["all-all"]
+    }
+    smtp = {
+      ingress_rules     = ["smtp-tcp"]
       ingress_with_self = ["all-all"]
       egress_rules      = ["all-all"]
     }
